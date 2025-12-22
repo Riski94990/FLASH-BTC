@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Zamz Host adalah layanan top up Free Fire cepat, aman, dan terpercaya. Dapatkan Diamond FF murah dengan proses otomatis 24 jam.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Zamz Host – Top Up FF Murah & Cepat</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            background-color: #0b0b15;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND UTAMA DENGAN OVERLAY */
+        .main-wrapper {
+            background-image: linear-gradient(rgba(11, 11, 21, 0.85), rgba(11, 11, 21, 0.95)), 
+                              url('https://i.ibb.co.com/bgrLpgjH/97235a42c2002876ee521d503eb4a208.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* HEADER STICKY MOBILE */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ff4655;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .logo-area .brand {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff4655;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .logo-area .sub-brand {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-top: -5px;
+            display: block;
+        }
+
+        .nav-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* SIDEBAR / MOBILE MENU */
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: #1a1a2e;
+            z-index: 1001;
+            padding: 30px;
+            transition: 0.4s;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+        }
+
+        #mobileMenu.active {
+            right: 0;
+        }
+
+        #mobileMenu ul {
+            list-style: none;
+            margin-top: 50px;
+        }
+
+        #mobileMenu ul li {
+            margin-bottom: 25px;
+        }
+
+        #mobileMenu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .overlay-menu {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 70, 85, 0.5);
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .cta-btn {
+            background: #ff4655;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 70, 85, 0.4);
+            transition: 0.3s;
+        }
+
+        /* CARDS & LAYOUTS */
+        .container {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff4655;
+            padding-left: 15px;
+            text-transform: uppercase;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-card i {
+            font-size: 24px;
+            color: #ff4655;
+        }
+
+        /* PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card.active {
+            border-color: #ff4655;
+            background: rgba(255, 70, 85, 0.1);
+        }
+
+        .product-card img {
+            width: 40px;
+            margin-bottom: 10px;
+        }
+
+        .product-card .p-name {
+            font-size: 13px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .product-card .p-price {
+            font-size: 15px;
+            color: #00ff88;
+            font-weight: 700;
+            margin: 5px 0;
+            display: block;
+        }
+
+        /* FORM STYLING FOR ANDROID */
+        .form-section {
+            background: #16213e;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 14px;
+            background: #0f3460;
+            border: 1px solid #1a1a2e;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #ff4655;
+        }
+
+        /* PAYMENT METHOD */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .pay-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            opacity: 0.8;
+            filter: grayscale(1);
+        }
+
+        .pay-item.selected {
+            opacity: 1;
+            filter: grayscale(0);
+            border: 3px solid #ff4655;
+        }
+
+        .pay-item img {
+            max-width: 80%;
+            max-height: 100%;
+        }
+
+        /* STEPS SECTION */
+        .step-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .step-num {
+            background: #ff4655;
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* TESTIMONIAL SLIDER (MOBILE OPTIMIZED) */
+        .testi-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .testi-card {
+            min-width: 80%;
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 15px;
+            scroll-snap-align: center;
+            border: 1px solid #333;
+        }
+
+        .testi-name {
+            color: #ff4655;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* FAQ ACCORDION */
+        .faq-item {
+            margin-bottom: 10px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.3s ease-out;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px;
+            max-height: 200px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0b0b15;
+            padding: 50px 20px;
+            border-top: 2px solid #333;
+        }
+
+        .footer-logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff4655;
+            margin-bottom: 15px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact {
+            margin-bottom: 30px;
+        }
+
+        .footer-contact p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #ff4655;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.3);
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* HIDDEN CREDIT SECTION - AS REQUESTED */
+        .hidden-credit {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .hidden-credit img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        /* MEDIA QUERIES ANDROID SPECIFIC */
+        @media screen and (max-width: 412px) {
+            .hero h1 { font-size: 28px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .input-group label { font-size: 13px; }
+            .btn-submit { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <header>
+        <div class="logo-area">
+            <span class="brand">ZAMZ HOST</span>
+            <span class="sub-brand">Top Up Free Fire</span>
+        </div>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <div class="overlay-menu" id="overlayMenu" onclick="toggleMenu()"></div>
+    <nav id="mobileMenu">
+        <div style="text-align: right;">
+            <button class="nav-toggle" onclick="toggleMenu()">✕</button>
+        </div>
+        <ul>
+            <li><a href="#" onclick="toggleMenu()">Beranda</a></li>
+            <li><a href="#topup" onclick="toggleMenu()">Top Up FF</a></li>
+            <li><a href="#cara-order" onclick="toggleMenu()">Cara Order</a></li>
+            <li><a href="#testimoni" onclick="toggleMenu()">Testimoni</a></li>
+            <li><a href="#faq" onclick="toggleMenu()">Bantuan (FAQ)</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>TOP UP FREE FIRE<br><span style="color: #ff4655;">CEPAT & AMAN</span></h1>
+        <p>Diamond FF masuk otomatis dalam hitungan menit. Layanan terpercaya dengan ribuan pelanggan setiap hari.</p>
+        <a href="#topup" class="cta-btn pulse">TOP UP SEKARANG</a>
+    </section>
+
+    <div class="container">
+        <div class="grid-info">
+            <div class="info-card">
+                <i>⚡</i>
+                <div>
+                    <strong>Proses Otomatis</strong>
+                    <p style="font-size: 12px; color: #aaa;">Sistem kami bekerja 24 jam nonstop.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i>💰</i>
+                <div>
+                    <strong>Harga Terjangkau</strong>
+                    <p style="font-size: 12px; color: #aaa;">Harga paling kompetitif se-Indonesia.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <i>🛡️</i>
+                <div>
+                    <strong>Aman & Legal</strong>
+                    <p style="font-size: 12px; color: #aaa;">Top Up resmi via Player ID saja.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container" id="topup">
+        <h2 class="section-title">Form Pemesanan</h2>
+        
+        <form id="formTopUpFF">
+            
+            <div class="form-section">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div class="step-num">1</div>
+                    <h3>Data Akun FF</h3>
+                </div>
+                <div class="input-group">
+                    <label for="playerid">Masukkan Player ID (Wajib)</label>
+                    <input type="number" id="playerid" placeholder="Contoh: 12345678" required>
+                </div>
+                <div class="input-group">
+                    <label for="server">Server (Opsional)</label>
+                    <select id="server">
+                        <option value="indonesia">Indonesia</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="thailand">Thailand</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div class="step-num">2</div>
+                    <h3>Pilih Diamond</h3>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card" onclick="selectProduct(this, '5 Diamond', 'Rp 1.000')">
+                        <span class="p-name">5 Diamond</span>
+                        <span class="p-price">Rp 1.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, '12 Diamond', 'Rp 2.000')">
+                        <span class="p-name">12 Diamond</span>
+                        <span class="p-price">Rp 2.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, '50 Diamond', 'Rp 8.000')">
+                        <span class="p-name">50 Diamond</span>
+                        <span class="p-price">Rp 8.000</span>
+                    </div>
+                    <div class="product-card active" onclick="selectProduct(this, '70 Diamond', 'Rp 10.000')">
+                        <span class="p-name">70 Diamond</span>
+                        <span class="p-price">Rp 10.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, '140 Diamond', 'Rp 20.000')">
+                        <span class="p-name">140 Diamond</span>
+                        <span class="p-price">Rp 20.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, '355 Diamond', 'Rp 50.000')">
+                        <span class="p-name">355 Diamond</span>
+                        <span class="p-price">Rp 50.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, '720 Diamond', 'Rp 100.000')">
+                        <span class="p-name">720 Diamond</span>
+                        <span class="p-price">Rp 100.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, 'Member Mingguan', 'Rp 30.000')">
+                        <span class="p-name">Membership Mingguan</span>
+                        <span class="p-price">Rp 30.000</span>
+                    </div>
+                    <div class="product-card" onclick="selectProduct(this, 'Member Bulanan', 'Rp 150.000')">
+                        <span class="p-name">Membership Bulanan</span>
+                        <span class="p-price">Rp 150.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div class="step-num">3</div>
+                    <h3>Metode Pembayaran</h3>
+                </div>
+                <div class="payment-grid">
+                    <div class="pay-item selected" onclick="selectPayment(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/1200px-Logo_dana_blue.svg.png" alt="DANA">
+                    </div>
+                    <div class="pay-item" onclick="selectPayment(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/1024px-Logo_ovo_purple.svg.png" alt="OVO">
+                    </div>
+                    <div class="pay-item" onclick="selectPayment(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" alt="GOPAY">
+                    </div>
+                    <div class="pay-item" onclick="selectPayment(this)">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" alt="QRIS">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div class="step-num">4</div>
+                    <h3>Data Kontak</h3>
+                </div>
+                <div class="input-group">
+                    <label for="whatsapp">Nomor WhatsApp Aktif</label>
+                    <input type="tel" id="whatsapp" placeholder="08xxxxxxxxx" required>
+                    <p style="font-size: 11px; color: #aaa; margin-top: 5px;">Bukti transaksi akan dikirim ke nomor ini.</p>
+                </div>
+                
+                <button type="button" class="btn-submit" onclick="prosesCheckout()">LANJUTKAN PEMBAYARAN</button>
+            </div>
+
+   
