@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Job Freelance Indonesia - Platform eksplorasi proyek freelance terbesar di Indonesia tanpa perlu mendaftar akun. Temukan ribuan proyek Desain, Web, Mobile App, dan Penulisan secara gratis dan transparan.">
-    <meta name="author" content="FreelanceID Team">
-    <meta name="theme-color" content="#2563eb">
-    <title>Job Freelance Indonesia – Temukan Proyek Terbaik</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>SurveyIncome 2026 | Platform Transparan</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    
     <style>
-        /* RESET & BASE STYLES */
+        /* ========================================
+        1. CSS VARIABLES & RESET
+        ========================================
+        */
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --success: #22c55e;
-            --warning: #f59e0b;
+            --secondary: #10b981;
+            --accent: #f59e0b;
             --danger: #ef4444;
             --background: #f8fafc;
-            --card-bg: #ffffff;
+            --surface: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-            --radius: 12px;
-            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --border: #e2e8f0;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -38,775 +34,1193 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            font-family: var(--font-main);
             background-color: var(--background);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            width: 100%;
+            padding-bottom: 80px; /* Space for bottom nav */
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-        button { cursor: pointer; border: none; outline: none; font-family: var(--font-main); }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4, h5 { font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
-        p { margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem; }
-
-        /* ==================================================
-        ANIMATIONS 
-        ==================================================
+        /* ========================================
+        2. ANIMATIONS
+        ========================================
         */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .animate-fade { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-        /* ==================================================
-        SPLASH SCREEN
-        ==================================================
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+
+        .animate-fade-up { animation: fadeInUp 0.6s ease forwards; }
+        .animate-fade { animation: fadeIn 0.4s ease forwards; }
+        
+        .skeleton {
+            background: #f6f7f8;
+            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 104px;
+            display: inline-block;
+            position: relative;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-name: shimmer;
+            animation-timing-function: linear;
+        }
+
+        /* ========================================
+        3. GLOBAL UI COMPONENTS
+        ========================================
         */
-        #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--primary);
+        .container {
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .btn {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: white;
-            transition: opacity 0.5s ease;
-        }
-
-        .splash-logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .splash-tagline {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        .loader {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        .btn-enter {
-            padding: 12px 30px;
-            background: white;
-            color: var(--primary);
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
             font-weight: 700;
-            border-radius: 50px;
-            display: none; /* muncul setelah loading dummy */
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* ==================================================
-        HEADER / APP BAR
-        ==================================================
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:active { transform: scale(0.95); background: var(--primary-dark); }
+
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-main); }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+
+        /* ========================================
+        4. TOP NAVIGATION
+        ========================================
         */
-        .header {
-            position: fixed;
-            top: 0; width: 100%; height: 70px;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
+        header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary);
             display: flex;
             align-items: center;
-            padding: 0 20px;
-            z-index: 1000;
-            gap: 15px;
+            gap: 8px;
         }
 
-        .logo-area {
+        .logo span { color: var(--text-main); }
+
+        /* ========================================
+        5. SECTIONS (SPA)
+        ========================================
+        */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* ========================================
+        6. HOME SECTION
+        ========================================
+        */
+        .hero {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .hero h1 {
+            font-size: 1.75rem;
             font-weight: 800;
-            color: var(--primary);
-            font-size: 1.4rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* Disclaimer Card */
+        .disclaimer-card {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .disclaimer-title {
+            color: #9a3412;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #c2410c;
+        }
+
+        .disclaimer-list li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        /* ========================================
+        7. SURVEY LIST
+        ========================================
+        */
+        .survey-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .survey-card.locked::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .lock-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            text-align: center;
+            width: 80%;
+        }
+
+        .lock-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .survey-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .reward-tag {
+            font-weight: 800;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        /* ========================================
+        8. UPGRADE PAGE
+        ========================================
+        */
+        .qris-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .qris-image {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 12px;
+            border: 4px solid #f1f5f9;
+        }
+
+        .upgrade-benefit {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--secondary);
             flex-shrink: 0;
         }
 
-        .search-container {
-            flex-grow: 1;
-            position: relative;
+        /* ========================================
+        9. BALANCE DISPLAY
+        ========================================
+        */
+        .balance-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            margin-bottom: 24px;
         }
 
-        .search-container input {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
-            background: var(--background);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
+        .balance-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        /* ========================================
+        10. WITHDRAW FORM
+        ========================================
+        */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
             font-size: 0.9rem;
         }
 
-        .search-icon {
-            position: absolute;
-            left: 15px; top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary);
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
-        .icon-btn {
-            width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%;
-            background: var(--background);
-            color: var(--text-main);
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
-        /* ==================================================
-        BOTTOM NAVIGATION
-        ==================================================
+        /* ========================================
+        11. BOTTOM NAVIGATION
+        ========================================
         */
         .bottom-nav {
             position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            height: 65px;
-            background: white;
-            border-top: 1px solid var(--border-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: var(--surface);
             display: flex;
             justify-content: space-around;
-            align-items: center;
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
             z-index: 1000;
-            padding-bottom: env(safe-area-inset-bottom);
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--secondary);
+            color: var(--text-muted);
+            text-decoration: none;
             font-size: 0.7rem;
             font-weight: 600;
+            transition: var(--transition);
         }
 
         .nav-item.active {
             color: var(--primary);
         }
 
-        .nav-item svg {
-            width: 24px; height: 24px;
+        .nav-icon {
+            font-size: 1.4rem;
             margin-bottom: 4px;
         }
 
-        /* ==================================================
-        MAIN CONTENT LAYOUT
-        ==================================================
+        /* ========================================
+        12. FAQ SECTION
+        ========================================
         */
-        main {
-            padding: 90px 20px 100px 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* ==================================================
-        HERO SECTION
-        ==================================================
-        */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), #4f46e5);
-            border-radius: 20px;
-            padding: 30px 20px;
-            color: white;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 { font-size: 1.8rem; margin-bottom: 10px; }
-        .hero p { color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-bottom: 20px; }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .stat-item {
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-val { font-weight: 800; font-size: 1.1rem; display: block; }
-        .stat-label { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; }
-
-        /* ==================================================
-        CATEGORIES
-        ==================================================
-        */
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .section-title h2 { font-size: 1.2rem; margin: 0; }
-        .section-title a { color: var(--primary); font-size: 0.85rem; font-weight: 600; }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .cat-card {
-            background: white;
-            padding: 15px 10px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s;
-        }
-
-        .cat-card:active { transform: scale(0.95); }
-
-        .cat-icon {
-            width: 45px; height: 45px;
-            background: #eff6ff;
-            color: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 1.5rem;
-        }
-
-        .cat-name { font-size: 0.75rem; font-weight: 700; display: block; }
-
-        /* ==================================================
-        PROJECT CARDS
-        ==================================================
-        */
-        .job-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .job-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            background: #f1f5f9;
-            color: var(--secondary);
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .job-badge.urgent { background: #fee2e2; color: var(--danger); }
-        .job-badge.high-budget { background: #dcfce7; color: var(--success); }
-
-        .job-title { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-main); }
-        .job-meta { display: flex; gap: 15px; margin-bottom: 15px; }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .job-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .tag {
-            font-size: 0.7rem;
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 3px 8px;
-            border-radius: 5px;
-        }
-
-        .job-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px dashed var(--border-color);
-        }
-
-        .job-price { font-weight: 800; color: var(--text-main); font-size: 1rem; }
-        .btn-detail {
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* ==================================================
-        MODAL SYSTEM (For Detail & Profiles)
-        ==================================================
-        */
-        .modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            display: none;
-            justify-content: flex-end;
-            flex-direction: column;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 25px 25px 0 0;
-            padding: 30px 20px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        .close-modal {
-            width: 40px; height: 5px;
-            background: #cbd5e1;
-            border-radius: 10px;
-            margin: -15px auto 20px;
-        }
-
-        /* ==================================================
-        REPETITIVE STYLING FOR CONTENT 
-        (Untuk menambah panjang CSS & detail)
-        ==================================================
-        */
-        .article-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-        }
-        .article-img { height: 150px; background: #e2e8f0; width: 100%; }
-        .article-body { padding: 15px; }
-        .article-title { font-size: 1rem; margin-bottom: 10px; }
-
         .faq-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
         }
+
         .faq-question {
-            padding: 15px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
         }
+
         .faq-answer {
-            padding: 0 15px 15px;
-            font-size: 0.85rem;
+            padding-top: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             display: none;
         }
 
-        /* FOOTER */
-        .footer {
-            background: #0f172a;
-            color: white;
-            padding: 40px 20px 100px;
-            margin-top: 50px;
-            text-align: center;
-        }
-        .footer-logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-        .footer p { color: #94a3b8; font-size: 0.8rem; }
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0; }
-        .footer-links a { color: #cbd5e1; font-size: 0.8rem; }
-
-        /* Form Controls */
-        .form-group { margin-bottom: 15px; }
-        .form-label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
-        .form-control {
-            width: 100%; padding: 12px;
-            border-radius: 8px; border: 1px solid var(--border-color);
-            font-family: var(--font-main);
+        .faq-item.open .faq-answer {
+            display: block;
         }
 
-        /* MEDIA QUERY ANDROID-SPECIFIC
-        Optimized for 360px - 430px
+        /* ========================================
+        13. SURVEY INTERFACE
+        ========================================
         */
-        @media (max-width: 430px) {
-            .header { height: 60px; }
-            main { padding-top: 80px; }
-            .hero h1 { font-size: 1.5rem; }
-            .cat-card { padding: 10px 5px; }
-            .cat-icon { width: 35px; height: 35px; font-size: 1.2rem; }
+        .survey-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .option-card {
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        /* ========================================
+        14. FOOTER
+        ========================================
+        */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        /* ========================================
+        15. NOTIFICATION
+        ========================================
+        */
+        #toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #334155;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <div class="splash-logo">FreelanceID</div>
-        <div class="splash-tagline">Gerbang Peluang Freelance Indonesia</div>
-        <div class="loader" id="loader"></div>
-        <button class="btn-enter" id="btn-enter" onclick="hideSplash()">MULAI EKSPLORASI</button>
-    </div>
+    <div id="toast">Notifikasi</div>
 
-    <header class="header">
-        <div class="logo-area">F.</div>
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari desain, web, video...">
+    <header>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Survey<span>Income</span></span>
         </div>
-        <button class="icon-btn">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-        </button>
+        <div id="user-status-top">
+            <span class="badge badge-warning" id="user-tier">Free Member</span>
+        </div>
     </header>
 
+    <div class="container">
+
+        <section id="home" class="page-section active">
+            <div class="hero animate-fade-up">
+                <h1>Survey Online untuk Penghasilan Tambahan</h1>
+                <p>Platform riset pasar transparan yang membayar Anda untuk setiap pendapat yang divalidasi.</p>
+                <div class="disclaimer-card">
+                    <div class="disclaimer-title">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        INFORMASI TRANSPARANSI
+                    </div>
+                    <ul class="disclaimer-list">
+                        <li><span>•</span> Ini BUKAN program cepat kaya atau investasi.</li>
+                        <li><span>•</span> Upgrade fitur Rp10.000 untuk akses platform selamanya.</li>
+                        <li><span>•</span> Reward diberikan hanya jika jawaban survey disetujui (valid).</li>
+                        <li><span>•</span> Survey tidak selalu tersedia setiap saat.</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" onclick="navigateTo('surveys')">Lihat Survey Tersedia</button>
+            </div>
+
+            <div class="card animate-fade-up" style="margin-top: 24px;">
+                <h3 style="margin-bottom: 12px;">Cara Kerja</h3>
+                <div style="display: grid; gap: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="width: 32px; height: 32px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800;">1</div>
+                        <div>
+                            <p style="font-weight: 700; font-size: 0.9rem;">Upgrade Akun</p>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Biaya satu kali Rp10.000 untuk membuka fitur penarikan dan survey.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <div style="width: 32px; height: 32px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800;">2</div>
+                        <div>
+                            <p style="font-weight: 700; font-size: 0.9rem;">Isi Survey</p>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Jawab dengan jujur sesuai profil Anda.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <div style="width: 32px; height: 32px; background: #eff6ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800;">3</div>
+                        <div>
+                            <p style="font-weight: 700; font-size: 0.9rem;">Tarik Saldo</p>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">WD minimal Rp150.000 ke E-Wallet atau Bank Lokal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="surveys" class="page-section">
+            <h2 style="margin-bottom: 20px;">Daftar Survey</h2>
+            
+            <div id="locked-state-info">
+                <div class="card" style="background: #eef2ff; border: 1.5px dashed var(--primary);">
+                    <p style="font-size: 0.9rem; text-align: center; font-weight: 600; color: var(--primary);">
+                        🔒 Akun Anda masih dalam mode gratis. <br>Silakan upgrade untuk mulai menghasilkan.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card survey-card locked" id="sc-1">
+                <div class="lock-overlay">
+                    <div class="lock-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <button class="btn btn-primary" style="padding: 10px 16px; font-size: 0.85rem;" onclick="navigateTo('upgrade')">Buka Akses</button>
+                </div>
+                <div class="survey-info">
+                    <span class="badge badge-success">Baru</span>
+                    <span class="reward-tag">Rp50.000</span>
+                </div>
+                <h3 style="margin-bottom: 8px;">Kebiasaan Konsumsi Kopi 2026</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    Estimasi: 5 Menit
+                </p>
+                <button class="btn btn-outline" disabled>Mulai Survey</button>
+            </div>
+
+            <div class="card survey-card locked" id="sc-2">
+                <div class="lock-overlay">
+                    <div class="lock-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                </div>
+                <div class="survey-info">
+                    <span class="badge badge-success">Hot</span>
+                    <span class="reward-tag">Rp50.000</span>
+                </div>
+                <h3 style="margin-bottom: 8px;">Penggunaan AI di Smartphone</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    Estimasi: 8 Menit
+                </p>
+                <button class="btn btn-outline" disabled>Mulai Survey</button>
+            </div>
+
+            <div class="card" style="background: #f1f5f9;">
+                <h4 style="font-size: 0.9rem; margin-bottom: 8px;">🛡️ Keamanan Data</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">
+                    Data jawaban Anda dienkripsi dan hanya digunakan untuk keperluan riset anonim. Kami tidak menjual data pribadi seperti nomor HP atau alamat Anda.
+                </p>
+            </div>
+        </section>
+
+        <section id="upgrade" class="page-section">
+            <h2 style="margin-bottom: 8px;">Upgrade Fitur Pro</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Hanya dengan Rp10.000, Anda mendapatkan akses penuh.</p>
+            
+            <div class="card">
+                <div class="upgrade-benefit">
+                    <div class="benefit-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <div>
+                        <p style="font-weight: 700; font-size: 0.9rem;">Buka Semua Survey</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Akses ke survey dengan reward Rp50.000/survey.</p>
+                    </div>
+                </div>
+                <div class="upgrade-benefit">
+                    <div class="benefit-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <div>
+                        <p style="font-weight: 700; font-size: 0.9rem;">Fitur Penarikan Saldo</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Bisa menarik pendapatan ke Bank atau E-Wallet.</p>
+                    </div>
+                </div>
+                <div class="upgrade-benefit">
+                    <div class="benefit-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <div>
+                        <p style="font-weight: 700; font-size: 0.9rem;">Masa Aktif Selamanya</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Cukup sekali bayar tanpa biaya bulanan.</p>
+                    </div>
+                </div>
+
+                <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-top: 16px;">
+                    <p style="font-size: 0.75rem; color: #92400e; line-height: 1.4;">
+                        <strong>PENTING:</strong> Biaya upgrade adalah biaya aktivasi sistem. Ini bukan investasi. Reward hanya cair jika survey diselesaikan dengan benar dan lolos verifikasi manual.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="text-align: center; margin-bottom: 16px;">Pembayaran via QRIS</h3>
+                <div class="qris-container">
+                    <a href="https://ibb.co.com/21Yvz9tH">
+                        <img src="https://i.ibb.co.com/pBrfH7z5/Screenshot-20260109-012036.jpg" alt="QRIS Upgrade" class="qris-image">
+                    </a>
+                </div>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">
+                    Silakan scan QRIS di atas menggunakan aplikasi Bank atau E-Wallet Anda (Gopay, Dana, OVO, dll).
+                </p>
+                <div class="form-group">
+                    <label>Konfirmasi ID Transaksi</label>
+                    <input type="text" class="form-input" id="trx-id" placeholder="Contoh: ID-99827162">
+                </div>
+                <button class="btn btn-primary" onclick="processUpgrade()">Konfirmasi Pembayaran</button>
+            </div>
+        </section>
+
+        <section id="balance" class="page-section">
+            <div class="balance-hero animate-fade-up">
+                <p class="balance-label">Total Saldo (Estimasi)</p>
+                <div class="balance-amount" id="balance-value">Rp0</div>
+                <p style="font-size: 0.75rem; opacity: 0.8;">Status: <span id="balance-status">Akses Terbatas</span></p>
+            </div>
+
+            <h3 style="margin-bottom: 16px;">Riwayat Aktivitas</h3>
+            <div id="history-list">
+                <div style="text-align: center; padding: 40px 20px; color: var(--text-muted);">
+                    <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-bottom: 12px; opacity: 0.3;"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    <p>Belum ada riwayat transaksi</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="withdraw" class="page-section">
+            <h2 style="margin-bottom: 16px;">Tarik Saldo</h2>
+            
+            <div class="card" style="background: #f8fafc; border: 1px solid var(--border);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">Minimal Penarikan</span>
+                    <span style="font-weight: 700;">Rp150.000</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">Biaya Admin</span>
+                    <span style="font-weight: 700; color: var(--danger);">Rp2.500</span>
+                </div>
+            </div>
+
+            <div class="card" id="wd-form-container">
+                <div id="wd-locked-msg" style="text-align: center; padding: 20px 0;">
+                    <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--danger); margin-bottom: 12px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <p style="font-weight: 700; margin-bottom: 4px;">Fitur Penarikan Terkunci</p>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Anda harus menjadi Member Pro untuk menarik saldo.</p>
+                    <button class="btn btn-primary" onclick="navigateTo('upgrade')">Upgrade Sekarang</button>
+                </div>
+
+                <div id="wd-unlocked-form" style="display: none;">
+                    <div class="form-group">
+                        <label>Nominal (Min. Rp150.000)</label>
+                        <input type="number" class="form-input" id="wd-amount" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Metode Pembayaran</label>
+                        <select class="form-input" id="wd-method">
+                            <option value="">-- Pilih Bank / E-Wallet --</option>
+                            <option value="dana">DANA</option>
+                            <option value="gopay">GOPAY</option>
+                            <option value="ovo">OVO</option>
+                            <option value="bca">BCA</option>
+                            <option value="bri">BRI</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Rekening / HP</label>
+                        <input type="text" class="form-input" id="wd-account" placeholder="08xxxxxxxxxx">
+                    </div>
+                    <button class="btn btn-primary" onclick="submitWithdraw()">Ajukan Penarikan</button>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px; text-align: center;">
+                        Proses penarikan dilakukan secara manual oleh tim kami untuk verifikasi data. Estimasi 1-3 hari kerja.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="help" class="page-section">
+            <h2 style="margin-bottom: 20px;">Pusat Bantuan</h2>
+            
+            <div class="card">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah platform ini penipuan?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Bukan. Kami adalah platform penyedia riset pasar. Transparansi adalah prioritas kami. Kami tidak menjanjikan kekayaan instan.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Kenapa harus membayar Rp10.000?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Biaya tersebut digunakan untuk pemeliharaan server dan penyaringan pengguna serius guna menghindari bot (akun palsu) yang merusak data riset.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah penghasilan dijamin?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Tidak. Penghasilan tergantung pada ketersediaan survey dan kelayakan profil Anda dalam menjawab survey tersebut.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Kenapa minimal WD Rp150.000?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Untuk mengefisiensi biaya operasional transfer manual dan memastikan keberlanjutan platform.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah ini investasi?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Sama sekali bukan. Tidak ada bunga atau penggandaan uang di sini. Anda bekerja mengisi survey untuk mendapatkan imbalan.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Berapa lama proses withdraw?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Estimasi 1 hingga 3 hari kerja, karena setiap survey yang Anda kerjakan akan divalidasi ulang oleh klien kami.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah saldo bisa hangus?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Saldo tidak akan hangus selama akun Anda aktif dan tidak melanggar syarat ketentuan (seperti memberikan jawaban asal-asalan).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah survey selalu ada?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Tidak selalu. Survey muncul berdasarkan kebutuhan brand/perusahaan riset yang menjadi mitra kami.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Apakah pembayaran QRIS aman?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Sangat aman. QRIS kami menggunakan standar resmi pembayaran nasional Indonesia.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Bagaimana menghubungi bantuan?
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Anda dapat mengirimkan tiket bantuan melalui menu profil atau email ke support@surveyincome2026.com.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="survey-active" class="page-section">
+            <div class="survey-header">
+                <button class="btn-outline" style="width: 40px; height: 40px; padding: 0; border-radius: 50%;" onclick="abortSurvey()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar" id="survey-progress"></div>
+                </div>
+                <span id="survey-step">1/5</span>
+            </div>
+
+            <div id="survey-content">
+                </div>
+        </section>
+
+        <section id="survey-success" class="page-section">
+            <div style="text-align: center; padding: 40px 0;">
+                <div style="width: 80px; height: 80px; background: #dcfce7; color: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
+                </div>
+                <h2 style="margin-bottom: 12px;">Survey Selesai!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">
+                    Terima kasih atas partisipasi Anda. Jawaban Anda kini sedang dalam proses <strong>verifikasi manual</strong> oleh tim analis kami.
+                </p>
+                <div class="card" style="text-align: left; background: #f8fafc;">
+                    <p style="font-size: 0.85rem; margin-bottom: 8px;"><strong>Status:</strong> <span class="badge badge-warning">Menunggu Verifikasi</span></p>
+                    <p style="font-size: 0.85rem; margin-bottom: 8px;"><strong>Reward:</strong> Rp50.000 (Pendending)</p>
+                    <p style="font-size: 0.85rem;"><strong>Estimasi Selesai:</strong> 24 - 48 Jam</p>
+                </div>
+                <button class="btn btn-primary" onclick="navigateTo('home')">Kembali ke Beranda</button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">Syarat & Ketentuan</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+            <p>Platform ini bersifat independen. Semua reward dibayarkan atas dasar validasi kualitas jawaban.</p>
+            <p style="margin-top: 12px;">Hak Cipta © 2026 SurveyIncome Professional.</p>
+        </footer>
+
+    </div>
+
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-            <span>Beranda</span>
+        <a href="javascript:void(0)" class="nav-item active" onclick="navigateTo('home', this)">
+            <div class="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+            <span>Home</span>
         </a>
-        <a href="#proyek" class="nav-item">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            <span>Proyek</span>
+        <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('surveys', this)">
+            <div class="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+            <span>Survey</span>
         </a>
-        <a href="#edukasi" class="nav-item">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span>Edukasi</span>
+        <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('balance', this)">
+            <div class="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+            <span>Saldo</span>
         </a>
-        <a href="#tentang" class="nav-item">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>Info</span>
+        <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('withdraw', this)">
+            <div class="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg></div>
+            <span>Tarik</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('help', this)">
+            <div class="nav-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></div>
+            <span>Bantuan</span>
         </a>
     </nav>
 
-    <main>
-        <section class="hero animate-fade">
-            <h1>Temukan Proyek Freelance Terbaik</h1>
-            <p>Akses ribuan peluang kerja remote dari klien terpercaya di seluruh Indonesia tanpa ribet.</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-val">1,240+</span>
-                    <span class="stat-label">Proyek</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">850+</span>
-                    <span class="stat-label">Klien</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-val">Rp 2M+</span>
-                    <span class="stat-label">Total Budget</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="categories">
-            <div class="section-title">
-                <h2>Kategori Populer</h2>
-                <a href="#">Lihat Semua</a>
-            </div>
-            <div class="category-grid">
-                <div class="cat-card">
-                    <div class="cat-icon">🎨</div>
-                    <span class="cat-name">Desain Grafis</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">💻</div>
-                    <span class="cat-name">Web Dev</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">📱</div>
-                    <span class="cat-name">Mobile App</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">✍️</div>
-                    <span class="cat-name">Penulisan</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">📊</div>
-                    <span class="cat-name">Marketing</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">🎬</div>
-                    <span class="cat-name">Video Edit</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">✨</div>
-                    <span class="cat-name">UI/UX</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">🔍</div>
-                    <span class="cat-name">SEO</span>
-                </div>
-                <div class="cat-card">
-                    <div class="cat-icon">⌨️</div>
-                    <span class="cat-name">Data Entry</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="proyek">
-            <div class="section-title">
-                <h2>Proyek Terbaru</h2>
-                <div class="filter-pills">
-                    </div>
-            </div>
-
-            <div class="job-card animate-fade">
-                <span class="job-badge high-budget">Budget Tinggi</span>
-                <h3 class="job-title">Redesign Website E-Commerce Fashion</h3>
-                <div class="job-meta">
-                    <span class="meta-item">📅 7 Hari lagi</span>
-                    <span class="meta-item">🔥 Menengah</span>
-                </div>
-                <p>Kami membutuhkan UI/UX Designer untuk memperbarui tampilan website toko online kami agar lebih modern dan mobile-friendly...</p>
-                <div class="job-tags">
-                    <span class="tag">Figma</span>
-                    <span class="tag">UI/UX</span>
-                    <span class="tag">Responsive</span>
-                </div>
-                <div class="job-footer">
-                    <div class="job-price">Rp 4.500.000</div>
-                    <button class="btn-detail" onclick="showJobDetail()">Detail Proyek</button>
-                </div>
-            </div>
-
-            <div class="job-card animate-fade">
-                <span class="job-badge urgent">Mendesak</span>
-                <h3 class="job-title">Pembuatan Artikel SEO - Finansial</h3>
-                <div class="job-meta">
-                    <span class="meta-item">📅 2 Hari lagi</span>
-                    <span class="meta-item">☕ Pemula</span>
-                </div>
-                <p>Dicari penulis artikel yang paham tentang literasi keuangan dan investasi saham. Minimal 10 artikel per minggu...</p>
-                <div class="job-tags">
-                    <span class="tag">Copywriting</span>
-                    <span class="tag">SEO</span>
-                    <span class="tag">Blog</span>
-                </div>
-                <div class="job-footer">
-                    <div class="job-price">Rp 1.200.000</div>
-                    <button class="btn-detail" onclick="showJobDetail()">Detail Proyek</button>
-                </div>
-            </div>
-
-            <div class="job-card">
-                <span class="job-badge">Baru</span>
-                <h3 class="job-title">Aplikasi Android Ojek Online Lokal</h3>
-                <div class="job-meta"><span class="meta-item">📅 14 Hari lagi</span><span class="meta-item">🚀 Ahli</span></div>
-                <div class="job-footer"><div class="job-price">Rp 15.000.000</div><button class="btn-detail">Detail</button></div>
-            </div>
-            
-            <div class="job-card">
-                <span class="job-badge">Populer</span>
-                <h3 class="job-title">Video Editor Konten TikTok & Reels</h3>
-                <div class="job-meta"><span class="meta-item">📅 5 Hari lagi</span><span class="meta-item">🔥 Menengah</span></div>
-                <div class="job-footer"><div class="job-price">Rp 3.000.000</div><button class="btn-detail">Detail</button></div>
-            </div>
-
-        </section>
-
-        <section id="edukasi">
-            <div class="section-title">
-                <h2>Edukasi Freelance</h2>
-            </div>
-            
-            <div class="article-card">
-                <div class="article-img" style="background: url('https://via.placeholder.com/400x200?text=Tips+Freelance') center/cover;"></div>
-                <div class="article-body">
-                    <h3 class="article-title">5 Cara Mendapatkan Klien Pertama di Tahun 2026</h3>
-                    <p>Membangun portofolio yang menarik adalah kunci utama bagi setiap freelancer pemula...</p>
-                    <a href="#" style="color:var(--primary); font-weight:700; font-size:0.85rem;">Baca Selengkapnya →</a>
-                </div>
-            </div>
-
-            <div class="article-card">
-                <div class="article-img" style="background: url('https://via.placeholder.com/400x200?text=Harga+Jasa') center/cover;"></div>
-                <div class="article-body">
-                    <h3 class="article-title">Panduan Menentukan Harga Jasa (Pricing Strategy)</h3>
-                    <p>Jangan sampai Anda dibayar terlalu murah. Pelajari cara menghitung jam kerja dan nilai jasa Anda...</p>
-                    <a href="#" style="color:var(--primary); font-weight:700; font-size:0.85rem;">Baca Selengkapnya →</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="section-title">
-                <h2>Pertanyaan Umum (FAQ)</h2>
-            </div>
-            <div id="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        Apakah saya perlu akun untuk melamar?
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Tidak. Platform ini bersifat eksplorasi informasi. Anda bisa langsung menghubungi klien melalui kontak yang tertera pada detail proyek.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        Bagaimana sistem pembayarannya?
-                        <span>+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Pembayaran dilakukan langsung antara klien dan freelancer. Kami menyarankan menggunakan sistem Rekening Bersama untuk keamanan.
-                    </div>
-                </div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Apakah layanan ini gratis?<span>+</span></div><div class="faq-answer">Ya, 100% gratis untuk mencari informasi proyek.</div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bagaimana cara melapor proyek penipuan?<span>+</span></div><div class="faq-answer">Anda bisa menggunakan fitur 'Laporkan' di detail proyek.</div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Apa itu freelancer?<span>+</span></div><div class="faq-answer">Freelancer adalah pekerja lepas yang tidak terikat kontrak jangka panjang.</div></div>
-            </div>
-        </section>
-
-        <section id="kontak">
-            <div class="section-title">
-                <h2>Hubungi Kami</h2>
-            </div>
-            <div class="job-card">
-                <form onsubmit="return false">
-                    <div class="form-group">
-                        <label class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" placeholder="Contoh: Budi Santoso">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="email@contoh.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Pesan</label>
-                        <textarea class="form-control" rows="4" placeholder="Apa yang bisa kami bantu?"></textarea>
-                    </div>
-                    <button class="btn-detail" style="width:100%; padding:15px;">Kirim Pesan</button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer" id="tentang">
-        <div class="footer-logo">FreelanceID</div>
-        <p>Platform eksplorasi proyek freelance nomor satu di Indonesia. Kami menghubungkan talenta terbaik dengan peluang terbaik secara transparan.</p>
-        <div class="footer-links">
-            <a href="#">Tentang</a>
-            <a href="#">Privasi</a>
-            <a href="#">Syarat & Ketentuan</a>
-            <a href="#">Bantuan</a>
-            <a href="#">Blog</a>
-        </div>
-        <div style="margin-top:20px; font-size:0.7rem; color:#64748b;">
-            &copy; 2026 FreelanceID - Dibuat dengan ❤️ untuk Freelancer Indonesia.
-        </div>
-    </footer>
-
-    <div class="modal" id="job-modal">
-        <div class="modal-content">
-            <div class="close-modal" onclick="closeModal()"></div>
-            <span class="job-badge high-budget">Budget Tinggi</span>
-            <h2 id="modal-title">Redesign Website E-Commerce Fashion</h2>
-            <div class="job-meta">
-                <span class="meta-item">💰 Rp 4.500.000</span>
-                <span class="meta-item">⏱️ 14 Hari</span>
-            </div>
-            <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
-            <h3>Deskripsi Proyek</h3>
-            <p>Kami adalah brand fashion lokal yang sedang berkembang. Kami membutuhkan tampilan website yang lebih elegan, minimalis, dan memiliki konversi tinggi pada perangkat mobile.</p>
-            <h3>Tanggung Jawab</h3>
-            <ul style="margin-bottom:20px; padding-left:20px; list-style:disc; font-size:0.9rem;">
-                <li>Membuat wireframe dan desain high-fidelity di Figma.</li>
-                <li>Menyesuaikan palet warna dengan branding kami.</li>
-                <li>Memastikan navigasi checkout yang mudah.</li>
-            </ul>
-            <h3>Klien</h3>
-            <div style="display:flex; align-items:center; gap:10px; background:#f8fafc; padding:15px; border-radius:10px; margin-bottom:20px;">
-                <div style="width:40px; height:40px; background:var(--primary); border-radius:50%;"></div>
-                <div>
-                    <div style="font-weight:700; font-size:0.9rem;">PT. Fashion Maju Jaya</div>
-                    <div style="font-size:0.75rem; color:var(--text-muted);">Verified Client • 12 Proyek Selesai</div>
-                </div>
-            </div>
-            <button class="btn-detail" style="width:100%; padding:15px; font-size:1rem;" onclick="alert('Membuka WhatsApp Klien...')">HUBUNGI KLIEN</button>
-        </div>
-    </div>
-
     <script>
-        // 1. Splash Screen Logic
-        window.onload = function() {
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('btn-enter').style.display = 'block';
-            }, 1500);
+        /* ========================================
+        CORE JAVASCRIPT LOGIC
+        ========================================
+        */
+
+        // State Management
+        let appState = {
+            isPro: false,
+            balance: 0,
+            currentSurveyStep: 0,
+            activeSurveyData: null
         };
 
-        function hideSplash() {
-            const splash = document.getElementById('splash-screen');
-            splash.style.opacity = '0';
+        const surveyQuestions = [
+            {
+                q: "Seberapa sering Anda meminum kopi dalam sehari?",
+                options: ["Tidak pernah", "1-2 kali", "3-5 kali", "Lebih dari 5 kali"]
+            },
+            {
+                q: "Di mana Anda biasanya membeli kopi?",
+                options: ["Kopi saset di rumah", "Warung kopi (Warkop)", "Coffee Shop Modern", "Mesin kopi kantor"]
+            },
+            {
+                q: "Metode pembayaran apa yang paling sering Anda gunakan?",
+                options: ["Tunai/Cash", "E-Wallet (Dana/Gopay)", "QRIS", "Kartu Debit/Kredit"]
+            },
+            {
+                q: "Apa pertimbangan utama Anda memilih brand kopi?",
+                options: ["Harga yang murah", "Rasa yang unik", "Lokasi yang dekat", "Gengsi Brand"]
+            },
+            {
+                q: "Apakah Anda tertarik mencoba varian kopi susu nabati (Oat/Almond)?",
+                options: ["Sangat Tertarik", "Mungkin", "Tidak Tertarik", "Sudah rutin mengonsumsi"]
+            }
+        ];
+
+        // Navigation Engine
+        function navigateTo(sectionId, element = null) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Update Nav UI
+            if (element) {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                element.classList.add('active');
+            }
+        }
+
+        // Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.add('show');
             setTimeout(() => {
-                splash.style.display = 'none';
-            }, 500);
+                toast.classList.remove('show');
+            }, 3000);
         }
 
-        // 2. Modal Logic
-        function showJobDetail() {
-            document.getElementById('job-modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        // Upgrade Logic
+        function processUpgrade() {
+            const trxId = document.getElementById('trx-id').value;
+            if (trxId.length < 5) {
+                showToast("Masukkan ID Transaksi yang valid!");
+                return;
+            }
+
+            showToast("Sedang memverifikasi pembayaran...");
+            
+            // Simulating API Call
+            setTimeout(() => {
+                appState.isPro = true;
+                updateUIForPro();
+                showToast("Upgrade Berhasil! Selamat datang Member Pro.");
+                navigateTo('home');
+            }, 2000);
         }
 
-        function closeModal() {
-            document.getElementById('job-modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function updateUIForPro() {
+            document.getElementById('user-tier').innerText = "PRO MEMBER";
+            document.getElementById('user-tier').className = "badge badge-success";
+            document.getElementById('locked-state-info').style.display = "none";
+            document.getElementById('balance-status').innerText = "Akun Terverifikasi";
+            
+            // Unlock Surveys
+            document.querySelectorAll('.survey-card').forEach(card => {
+                card.classList.remove('locked');
+                const overlay = card.querySelector('.lock-overlay');
+                if (overlay) overlay.remove();
+                
+                const btn = card.querySelector('button');
+                btn.disabled = false;
+                btn.innerText = "Mulai Survey";
+                btn.className = "btn btn-primary";
+                btn.onclick = () => startSurvey();
+            });
+
+            // Unlock WD
+            document.getElementById('wd-locked-msg').style.display = "none";
+            document.getElementById('wd-unlocked-form').style.display = "block";
         }
 
-        // 3. FAQ Accordion Logic
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const span = element.querySelector('span');
-            if(answer.style.display === 'block') {
-                answer.style.display = 'none';
-                span.innerText = '+';
+        // Survey Engine
+        function startSurvey() {
+            appState.currentSurveyStep = 0;
+            navigateTo('survey-active');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const current = surveyQuestions[appState.currentSurveyStep];
+            const container = document.getElementById('survey-content');
+            
+            let html = `
+                <div class="animate-fade">
+                    <p class="question-text">${current.q}</p>
+                    <div class="options-group">
+            `;
+
+            current.options.forEach((opt, idx) => {
+                html += `
+                    <div class="option-card" onclick="selectOption(this, ${idx})">
+                        ${opt}
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 20px;" id="next-btn" disabled onclick="nextQuestion()">Pertanyaan Selanjutnya</button>
+                </div>
+            `;
+
+            container.innerHTML = html;
+            updateProgressBar();
+        }
+
+        function selectOption(el, idx) {
+            document.querySelectorAll('.option-card').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (appState.currentSurveyStep < surveyQuestions.length - 1) {
+                appState.currentSurveyStep++;
+                renderQuestion();
             } else {
-                answer.style.display = 'block';
-                span.innerText = '-';
+                finishSurvey();
             }
         }
 
-        // 4. Close modal on outside click
-        window.onclick = function(event) {
-            const modal = document.getElementById('job-modal');
-            if (event.target == modal) {
-                closeModal();
+        function updateProgressBar() {
+            const progress = ((appState.currentSurveyStep + 1) / surveyQuestions.length) * 100;
+            document.getElementById('survey-progress').style.width = `${progress}%`;
+            document.getElementById('survey-step').innerText = `${appState.currentSurveyStep + 1}/${surveyQuestions.length}`;
+        }
+
+        function finishSurvey() {
+            showToast("Mengirimkan jawaban...");
+            setTimeout(() => {
+                navigateTo('survey-success');
+                addHistory("Survey: Kebiasaan Kopi", "Pending", "+Rp50.000");
+            }, 1500);
+        }
+
+        function abortSurvey() {
+            if (confirm("Batalkan survey? Progress tidak akan disimpan.")) {
+                navigateTo('surveys');
             }
         }
+
+        // Withdraw Logic
+        function submitWithdraw() {
+            const amount = document.getElementById('wd-amount').value;
+            const method = document.getElementById('wd-method').value;
+            const account = document.getElementById('wd-account').value;
+
+            if (amount < 150000) {
+                showToast("Minimal penarikan Rp150.000");
+                return;
+            }
+            if (!method || !account) {
+                showToast("Lengkapi data penarikan!");
+                return;
+            }
+
+            showToast("Permintaan WD berhasil dikirim!");
+            addHistory(`Withdraw ke ${method.toUpperCase()}`, "Diproses", `-Rp${parseInt(amount).toLocaleString()}`);
+            
+            // Clear fields
+            document.getElementById('wd-amount').value = "";
+            document.getElementById('wd-account').value = "";
+        }
+
+        // Helper Functions
+        function addHistory(title, status, amount) {
+            const historyList = document.getElementById('history-list');
+            if (historyList.innerHTML.includes("Belum ada riwayat")) {
+                historyList.innerHTML = "";
+            }
+
+            const item = document.createElement('div');
+            item.className = 'card animate-fade';
+            item.style.padding = '16px';
+            item.style.marginBottom = '12px';
+            item.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="font-weight: 700; font-size: 0.9rem;">${title}</p>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Tgl: ${new Date().toLocaleDateString('id-ID')}</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p style="font-weight: 800; color: ${amount.includes('+') ? 'var(--secondary)' : 'var(--danger)'}">${amount}</p>
+                        <span class="badge ${status === 'Pending' || status === 'Diproses' ? 'badge-warning' : 'badge-success'}" style="font-size: 0.6rem;">${status}</span>
+                    </div>
+                </div>
+            `;
+            historyList.prepend(item);
+        }
+
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        // Ripple Effect
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('btn')) {
+                const btn = e.target;
+                const ripple = document.createElement('span');
+                const rect = btn.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.classList.add('ripple');
+                
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+        });
+
+        // Initialize App
+        window.onload = () => {
+            console.log("SurveyIncome 2026 Ready.");
+        };
+
     </script>
-    
-    </body>
+</body>
 </html>
